@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>RecordingList</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">RecordingList</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <p>Aquí podrá visualizar las grabaciones realizadas dentro del equipo.
+    Para proveer una mejor experiencia, por favor haga la primera grabacion.
+  </p>
+  <!--<ion-button (click)="startRecording" expand="full">Iniciar Grabar</ion-button>
+  <ion-button (click)="stopRecording" expand="full">Detener Grabación</ion-button>-->
+
+  <ion-list>
+    <ion-item button *ngFor="let f of storedFileNames" (click)="playFile(f)">
+      {{f}}
+      <!--<ion-button slot="start" (click)="details(f)" fill="clear">
+        <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+      </ion-button>-->
+      <ion-button slot="end" (click)="deleteRecording(f)" fill="clear" color="danger">
+        <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="10">
+        <span *ngIf="!recording">
+          Mantenga presionado para grabar
+        </span>
+        <span *ngIf="recording">
+          {{durationDisplay}}
+        </span>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button fill="clear" #recordbtn>
+          <ion-icon name="mic-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
